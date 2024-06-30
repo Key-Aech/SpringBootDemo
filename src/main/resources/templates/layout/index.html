@@ -1,0 +1,57 @@
+<html xmlns:th = "http://www.thymeleaf.org">
+    <div class="container" th:fragment="site_content">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-6 offset-3">
+                    <form th:action="@{'/addItem'}" method="post">
+                        <div class="form-group">
+                            <label>
+                                Name :
+                            </label>
+                            <input type="text" class="form-control" name="item_name">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Price :
+                            </label>
+                            <input type="number" class="form-control" name="item_price" value="0" max="100000000">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Amount :
+                            </label>
+                            <input type="number" class="form-control" name="item_amount" value="0" max="10000">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success">Add Item</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            <th width="10%">Details</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each = "it : ${items}">
+                            <td th:text = "${it.id}"></td>
+                            <td th:text = "${it.name}"></td>
+                            <td th:text = "${it.price}"></td>
+                            <td th:text = "${it.amount}"></td>
+                            <td><a th:href="@{'/details/' + ${it.id}}" class="btn btn-info btn-sm">Details</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>
